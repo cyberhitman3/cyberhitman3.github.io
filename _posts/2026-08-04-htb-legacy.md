@@ -1,6 +1,6 @@
 ---
 title: HTB Legacy Writeup
-date: 2026-08-24 14:00:00 +0400
+date: 2026-08-01 14:00:00 +0400
 categories: [HTB, Easy]
 tags: [ms08-067, netapi, smb, windows-xp, metasploit, rce]
 ---
