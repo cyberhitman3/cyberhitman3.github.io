@@ -318,7 +318,7 @@ cat test.txt
 
 **Root Flag:**
 
-3197dc36cXXXXXXXXXX
+de18ba445XXXXXXXXXX
 
 
 ### Path 2: Interactive Root Shell
