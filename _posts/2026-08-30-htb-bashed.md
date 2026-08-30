@@ -207,10 +207,11 @@ ls -l /scripts
 
 **Output:**
 
+```bash
 total 8
 -rw-r--r-- 1 scriptmanager scriptmanager 206 Aug 30 04:07 test.py
 -rw-r--r-- 1 root root 12 Aug 30 04:07 test.txt
-
+```
 
 **Key Observations:**
 - test.py is writable by scriptmanager
