@@ -341,9 +341,10 @@ EOF
 
 **Listener Output:**
 
+```bash
 Listening on 0.0.0.0 5566
 Connection received on 10.129.75.76 48480
-
+```
 
 **Received root reverse shell!**
 
