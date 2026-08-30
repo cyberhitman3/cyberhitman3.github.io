@@ -254,10 +254,12 @@ cat test.txt
 ```
 
 **Second Check:**
+
+```bash
 Let's replace ch3 with testing 123 and wait few minutes 
 scriptmanager@bashed:/scripts$ cat test.txt 
 ch3
-
+```
 
 **The content changed!** The script is executing automatically.
 
