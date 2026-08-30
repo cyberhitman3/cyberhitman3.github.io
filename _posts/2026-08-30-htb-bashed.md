@@ -58,15 +58,17 @@ gobuster dir -u http://10.129.73.124 -w /usr/share/seclists/Discovery/Web-Conten
 
 **Gobuster Results:**
 
-/css (Status: 301)
-/dev (Status: 301) [--> http://10.129.73.124/dev/]
-/fonts (Status: 301)
-/images (Status: 301)
-/index.html (Status: 200) [Size: 7743]
-/js (Status: 301)
-/php (Status: 301)
-/server-status (Status: 403)
-/uploads (Status: 301)
+```bash
+/css                  (Status: 301)
+/dev                  (Status: 301) 
+/fonts                (Status: 301)
+/images               (Status: 301)
+/index.html           (Status: 200)
+/js                   (Status: 301)
+/php                  (Status: 301)
+/server-status        (Status: 403)
+/uploads              (Status: 301)
+```
 
 
 **Interesting Directories:**
