@@ -254,7 +254,8 @@ cat test.txt
 ```
 
 **Second Check:**
-
+Let's replace ch3 with testing 123 and wait few minutes 
+scriptmanager@bashed:/scripts$ cat test.txt 
 ch3
 
 
