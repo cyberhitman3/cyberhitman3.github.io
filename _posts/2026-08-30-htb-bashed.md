@@ -247,16 +247,11 @@ cat test.txt
 testing 123!
 
 
-Waited a few minutes and checked again:
-
-```bash
-cat test.txt
-```
-
 **Second Check:**
 
 ```bash
-Let's replace ch3 with testing 123 and wait few minutes 
+Let's replace ch3 with testing 123 and wait few minutes
+
 scriptmanager@bashed:/scripts$ cat test.txt 
 ch3
 ```
