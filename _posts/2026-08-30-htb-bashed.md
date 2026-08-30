@@ -107,9 +107,11 @@ ls -l /home
 
 **Output:**
 
+```bash
 total 8
-drwxr-xr-x 4 arrexel arrexel 4096 Jun 2 2022 arrexel
-drwxr-xr-x 3 scriptmanager scriptmanager 4096 Dec 4 2017 scriptmanager
+drwxr-xr-x 4 arrexel      arrexel      4096 Jun  2  2022 arrexel
+drwxr-xr-x 3 scriptmanager scriptmanager 4096 Dec  4  2017 scriptmanager
+```
 
 
 ### Capturing User Flag
