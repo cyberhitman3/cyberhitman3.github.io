@@ -132,7 +132,7 @@ cat /home/arrexel/user.txt
 
 **User Flag:**
 
-3197dc36cXXX
+3197dc36cXXXXXXXXXX
 
 
 ---
@@ -318,7 +318,7 @@ cat test.txt
 
 **Root Flag:**
 
-de18ba445ea7XXX
+3197dc36cXXXXXXXXXX
 
 
 ### Path 2: Interactive Root Shell
@@ -421,7 +421,7 @@ cd /scripts; for f in *.py; do python "$f"; done
 
 ## Flags
 
-- 🚩 **User Flag**: 3197dc36cXXX
-- 🚩 **Root Flag**: de18ba445ea7XXX
+- 🚩 **User Flag**: 3197dc36cXXXXXXXXXX
+- 🚩 **Root Flag**: de18ba445XXXXXXXXXX
 
 **Machine: Completed ✓**
