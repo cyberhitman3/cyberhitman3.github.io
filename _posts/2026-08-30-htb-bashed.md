@@ -167,13 +167,14 @@ sudo -l
 
 **Critical Output:**
 
+```bash
 Matching Defaults entries for www-data on bashed:
 env_reset, mail_badpass,
 secure_path=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
 
 User www-data may run the following commands on bashed:
 (scriptmanager : scriptmanager) NOPASSWD: ALL
-
+```
 
 **www-data can execute ANY command as scriptmanager without a password!**
 
