@@ -32,6 +32,7 @@ nmap -sC -sV 10.129.73.124
 
 **Scan Results:**
 
+```bash
 Nmap scan report for 10.129.73.124
 Host is up (0.25s latency)
 Not shown: 999 closed tcp ports (conn-refused)
@@ -40,7 +41,7 @@ PORT STATE SERVICE VERSION
 80/tcp open http Apache httpd 2.4.18 ((Ubuntu))
 |_http-server-header: Apache/2.4.18 (Ubuntu)
 |_http-title: Arrexel's Development Site
-
+```
 
 **Key Findings:**
 - Only port 80 open (HTTP)
