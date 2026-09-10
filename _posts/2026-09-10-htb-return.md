@@ -1,7 +1,7 @@
 ---
 title: "Hack The Box - Return"
 date: 2026-09-10 01:39:00 -0400
-categories: [Hack The Box, Windows]
+categories: [HTB, Easy]
 tags: [htb, return, windows, active-directory, iis, burp, service-hijacking, privilege-escalation]
 ---
 
