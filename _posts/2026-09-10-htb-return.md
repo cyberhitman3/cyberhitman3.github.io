@@ -8,7 +8,7 @@ tags: [htb, return, windows, active-directory, iis, burp, service-hijacking, pri
 # Hack The Box - Return
 
 **Machine:** Return  
-**Difficulty:** Medium  
+**Difficulty:** Easy  
 **OS:** Windows  
 **Target IP:** 10.129.82.179
 
