@@ -402,7 +402,7 @@ Accessed container shell and navigated to mounted host filesystem:
 cat /host/root/root.txt
 # 5c7a6b6f4909f006****************
 ```
-![Root Access via Arcane Portal](/assets/img/08-root-final.jpg)
+![Root Access via Arcane Portal](/assets/img/08-root-final2.jpg)
 
 #### SSH Key Injection (Alternative)
 
