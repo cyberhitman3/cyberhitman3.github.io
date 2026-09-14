@@ -15,11 +15,10 @@ tags: [htb, kobold, linux, mcpjam, cve-2026-23744, privatebin, cve-2025-64714, d
 ## Table of Contents
 
 1. [Introduction](#introduction)
-2. [Attack Chain Overview](#attack-chain-overview)
-3. [Enumeration](#enumeration)
-4. [Initial Access](#initial-access)
-5. [Privilege Escalation](#privilege-escalation)
-6. [Lessons Learned](#lessons-learned)
+2. [Enumeration](#enumeration)
+3. [Initial Access](#initial-access)
+4. [Privilege Escalation](#privilege-escalation)
+5. [Lessons Learned](#lessons-learned)
 
 ## Introduction
 
