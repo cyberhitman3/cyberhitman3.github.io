@@ -10,3 +10,8 @@ group :jekyll_plugins do
   gem "jekyll-sitemap"
   gem "jekyll-include-cache"
 end
+
+# This satisfies the "Test site" step that keeps running
+group :test do
+  gem "html-proofer", "~> 5.0"
+end
