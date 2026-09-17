@@ -1,15 +1,19 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
 
-gem "jekyll-theme-chirpy", "~> 7.6"
-gem "jekyll-paginate", "~> 1.1.0"
+gem "jekyll", "~> 4.3.3"
 
-gem "html-proofer", "~> 5.0", group: :test
+# The core theme gem
+gem "jekyll-theme-chirpy", "~> 7.0"
 
-platforms :windows, :jruby do
-  gem "tzinfo", ">= 1", "< 3"
-  gem "tzinfo-data"
+group :jekyll_plugins do
+  gem "jekyll-paginate"
+  gem "jekyll-archives"
+  gem "jekyll-seo-tag"
+  gem "jekyll-sitemap"
+  gem "jekyll-include-cache"
 end
 
-gem "wdm", "~> 0.2.0", :platforms => [:windows]
+# The missing test framework breaking your workflow
+group :test do
+  gem "html-proofer", "~> 5.0"
+end
