@@ -33,16 +33,17 @@ sudo nmap -p- --reason --min-rate 10000 10.129.102.248
 ```
 
 **Scan Results:**
-
+```bash
 Nmap scan report for 10.129.102.248
 Host is up, received reset ttl 63 (0.25s latency)
 Not shown: 65532 closed tcp ports (reset)
-
+```
+```bash
 PORT STATE SERVICE REASON
 22/tcp open ssh syn-ack ttl 63
 80/tcp open http syn-ack ttl 63
 33060/tcp open mysqlx syn-ack ttl 63
-
+```
 
 ### Detailed Service Enumeration
 
@@ -94,13 +95,13 @@ gobuster dir -u http://academy.htb -w /usr/share/wordlists/dirbuster/directory-l
 ```
 
 **Discovered Paths:**
-
+```bash
 /images (Status: 301)
 /index.php (Status: 200)
 /home.php (Status: 302)
 /login.php (Status: 200)
 /register.php (Status: 200)
-
+```
 
 ---
 
@@ -120,6 +121,8 @@ Accessed the web application at http://academy.htb
 
 ### Stage 2: User Registration & Privilege Escalation
 
+![Burp Registration Request](/assets/img/htb-dog/burp-registration.jpg)
+
 Registered a new account with test credentials:
 - Username: ch3
 - Password: ch3
@@ -127,8 +130,6 @@ Registered a new account with test credentials:
 **Intercepting Registration Request with Burp Suite:**
 
 **Burp Intercepted Request:**
-
-![Burp Registration Request](/assets/img/htb-dog/burp-registration.jpg)
 
 Enabled Burp proxy and captured the registration POST request.
 
