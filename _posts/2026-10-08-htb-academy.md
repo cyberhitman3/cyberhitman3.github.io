@@ -305,7 +305,7 @@ $ id
 uid=1002(cry0l1t3) gid=1002(cry0l1t3) groups=1002(cry0l1t3),4(adm)
 ```
 
-**Success!** cry0l1t3 has access, and is member of **adm group**!
+**Success!** cry0l1t3 is member of **adm group**!
 
 ### Stage 4: Capturing User Flag
 
