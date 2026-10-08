@@ -119,8 +119,6 @@ Accessed the web application at http://academy.htb
 - Register for new account
 - Login with existing credentials
 
-![Academy Login Page](/assets/img/academy-login.jpg)
-
 ### Stage 2: User Registration & Privilege Escalation
 
 ![Burp Registration Request](/assets/img/htb-dog/burp-registration.jpg)
