@@ -110,6 +110,7 @@ gobuster dir -u http://academy.htb -w /usr/share/wordlists/dirbuster/directory-l
 ### Stage 1: Web Application Analysis
 
 Accessed the web application at http://academy.htb
+
 **Landing Page Screenshot:**
 
 ![Landing_Page](/assets/img/htb-dog/lading-page.jpg)
