@@ -134,6 +134,7 @@ Registered a new account with test credentials:
 Enabled Burp proxy and captured the registration POST request.
 
 **Critical Discovery:** The registration request included a `roleid` parameter set to 0 (regular user).
+
 ![Burp roleid Parameter](/assets/img/htb-dog/burp-roleid.jpg)
 
 **Exploitation:** Modified the `roleid` parameter from 0 to 1 (administrator) and forwarded the request.
@@ -413,11 +414,11 @@ sudo composer run-script x
 ```
 
 **Output:**
-
+```bash
 Do not run Composer as root/super user! See https://getcomposer.org/root for details
 id
 uid=0(root) gid=0(root) groups=0(root)
-
+```
 
 **Success!** Commands execute as root!
 
