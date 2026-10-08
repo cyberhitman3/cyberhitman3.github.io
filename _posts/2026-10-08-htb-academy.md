@@ -133,9 +133,9 @@ Registered a new account with test credentials:
 Enabled Burp proxy and captured the registration POST request.
 
 **Critical Discovery:** The registration request included a `roleid` parameter set to 0 (regular user).
+![Burp roleid Parameter](/assets/img/htb-dog/burp-roleid.jpg)
 
 **Exploitation:** Modified the `roleid` parameter from 0 to 1 (administrator) and forwarded the request.
-![Burp roleid Parameter](/assets/img/htb-dog/burp-roleid.jpg)
 
 **Result:** Successfully registered as admin user!
 
@@ -144,8 +144,6 @@ Enabled Burp proxy and captured the registration POST request.
 Logged in with the modified account (ch3:ch3)
 
 **Admin Panel Revealed:** Access to administrative functions and configuration.
-
-**Admin Panel Screenshot:**
 
 ![Admin Panel - dev-staging-01 Message](/assets/img/htb-dog/admin-panel.jpg)
 
