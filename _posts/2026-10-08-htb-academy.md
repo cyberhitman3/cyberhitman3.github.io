@@ -317,7 +317,7 @@ cat user.txt
 
 **User Flag:**
 
-f24263488aadf5895d12a47fd4423d44
+f24263488aadf589****************
 
 ### Stage 5: Exploiting ADM Group Membership
 
@@ -438,7 +438,7 @@ sudo composer run-script x
 
 **Root Flag:**
 
-733d583a66fdcb32f96616c8e9ab5d69
+733d583a66fdcb32****************
 
 
 ---
@@ -495,7 +495,7 @@ sudo composer run-script x
 
 ## Flags
 
-- 🚩 **User Flag**: f24263488aadf5895d12a47fd4423d44
-- 🚩 **Root Flag**: 733d583a66fdcb32f96616c8e9ab5d69
+- 🚩 **User Flag**: f24263488aadf589****************
+- 🚩 **Root Flag**: 733d583a66fdcb32****************
 
 **Machine: Completed ✓**
