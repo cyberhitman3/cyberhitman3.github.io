@@ -110,14 +110,13 @@ gobuster dir -u http://academy.htb -w /usr/share/wordlists/dirbuster/directory-l
 ### Stage 1: Web Application Analysis
 
 Accessed the web application at http://academy.htb
+**Landing Page Screenshot:**
 
 ![Landing_Page](/assets/img/htb-dog/lading-page.jpg)
 
 **Landing Page:** HTB Academy with two options:
 - Register for new account
 - Login with existing credentials
-
-**Landing Page Screenshot:**
 
 ![Academy Login Page](/assets/img/academy-login.jpg)
 
@@ -329,7 +328,7 @@ Used **aureport --tty** to read audit logs and reconstruct terminal activity:
 ```bash
 aureport --tty
 ```
-
+```bash
 **Audit Log Output:**
 TTY Report
 date time event auid term sess comm data
@@ -338,7 +337,7 @@ date time event auid term sess comm data
 08/12/2020 02:28:24 89 0 ? 1 sh "whoami",
 08/12/2020 02:28:28 90 0 ? 1 sh "exit",
 08/12/2020 02:28:37 93 0 ? 1 sh "/bin/bash -i",
-
+```
 **Critical Discovery:** Found mrb3n's password in audit logs!
 
 mrb3n password: mrb3n_Ac@d3my!
