@@ -111,6 +111,8 @@ gobuster dir -u http://academy.htb -w /usr/share/wordlists/dirbuster/directory-l
 
 Accessed the web application at http://academy.htb
 
+![Landing_Page](/assets/img/htb-dog/lading-page.jpg)
+
 **Landing Page:** HTB Academy with two options:
 - Register for new account
 - Login with existing credentials
@@ -371,14 +373,14 @@ sudo -l
 ```
 
 **Output:**
-
+```bash
 Matching Defaults entries for mrb3n on academy:
 env_reset, mail_badpass,
 secure_path=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
 
 User mrb3n may run the following commands on academy:
 (ALL) /usr/bin/composer
-
+```
 
 **Critical Finding:** Can run composer as root without password!
 
