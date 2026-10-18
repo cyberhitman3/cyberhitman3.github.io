@@ -122,7 +122,7 @@ netexec smb 10.129.108.70 -u svc_tgs -p 'GPPstillStandingStrong2k18' --shares
 
 [+] active.htb\svc_tgs:GPPstillStandingStrong2k18
 Share Permissions Remark
-``bash
+```bash
 NETLOGON READ Logon server share
 Replication READ
 SYSVOL READ Logon server share
