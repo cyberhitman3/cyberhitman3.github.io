@@ -167,8 +167,7 @@ User flag:
 type user.txt
 ```
 
-4dee149e0d1b5c5fd1f3c53933afd5df
-
+4dee149e0d1b5c5f****************
 
 ## Privilege Escalation
 
@@ -196,7 +195,7 @@ robocopy C:\Users\Administrator\Desktop C:\temp root.txt /B
 type C:\temp\root.txt
 ```
 
-33f12e0310ada248af9ec9f677c6aa2c
+33f12e0310ada248****************
 
 
 ## Summary
