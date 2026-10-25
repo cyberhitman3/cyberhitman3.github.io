@@ -164,7 +164,7 @@ cicada\emily.oscars
 User flag:
 
 ```bash
-type user.txt
+type C:\Users\emily.oscars.CICADA\Desktop\user.txt
 ```
 
 4dee149e0d1b5c5f****************
