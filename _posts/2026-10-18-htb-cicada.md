@@ -179,10 +179,10 @@ whoami /all
 BUILTIN\Backup Operators Alias S-1-5-32-551 Mandatory group, Enabled by default, Enabled group
 ...
 PRIVILEGES INFORMATION
-
+```bash
 SeBackupPrivilege Back up files and directories Enabled
 SeRestorePrivilege Restore files and directories Enabled
-
+```
 
 `emily.oscars` is a member of **Backup Operators** with `SeBackupPrivilege` enabled — this grants read access to any file on the filesystem regardless of ACLs, bypassing normal permission checks for backup purposes. This is the same privilege escalation technique covered in my [Baby writeup](https://cyberhitman3.github.io/posts/htb-baby/).
 
